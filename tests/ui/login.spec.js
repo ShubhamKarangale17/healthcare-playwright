@@ -47,8 +47,18 @@ test.describe('Login Tests - @ui @login', () => {
      */
 
     // Click on login link to navigate to login page
-    await page.click(selectors.loginLink);
-    await page.waitForLoadState('networkidle');
+    const loginLink = page.locator(selectors.loginLink);
+    try {
+      await loginLink.waitFor({ state: 'visible', timeout: 15000 });
+    } catch (e) {
+      const pageContent = await page.content();
+      console.log('Page content length:', pageContent.length);
+      console.log('Search for login link:', pageContent.includes('profile.php'));
+      throw new Error(`Login link not found. Page loaded but link missing`);
+    }
+    
+    await loginLink.click();
+    await page.waitForTimeout(1000);
 
     // Verify we are on the login page
     const urlAfterClick = page.url();

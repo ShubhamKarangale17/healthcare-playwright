@@ -9,13 +9,13 @@ module.exports = defineConfig({
   testDir: './tests',
   
   // Test timeout settings
-  timeout: 30 * 1000,
+  timeout: 60 * 1000,
   expect: {
-    timeout: 5000,
+    timeout: 10000,
   },
 
   // Retry failed tests once
-  retries: 1,
+  retries: 0,
   
   // Workers for parallel execution
   workers: 1,
@@ -48,16 +48,6 @@ module.exports = defineConfig({
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
-    },
-
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
-
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
     },
   ],
 

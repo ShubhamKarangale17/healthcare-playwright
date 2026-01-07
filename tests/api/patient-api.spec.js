@@ -138,14 +138,10 @@ test.describe('Patient API Tests - @api @patient', () => {
 
     const response = await request.get(`${API_BASE_URL}/users/${invalidPatientId}`);
 
-    // Verify status code is 404 (though JSONPlaceholder returns empty object)
-    // JSONPlaceholder API typically doesn't return 404, but we check the response
-    expect(response.status()).toBe(200);
+    // Verify status code is 404 for non-existent resource
+    expect(response.status()).toBe(404);
     
-    const patient = await response.json();
-    // JSONPlaceholder returns empty object for non-existent users
-    expect(Object.keys(patient).length).toBe(0);
-    console.log(`✓ Non-existent patient returns empty response`);
+    console.log(`✓ Non-existent patient returns 404 status`);
   });
 
   test('POST create new patient - verify patient is created', async ({ request }) => {
