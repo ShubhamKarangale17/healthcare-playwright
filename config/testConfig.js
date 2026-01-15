@@ -10,12 +10,13 @@
 // ============================================
 
 const APP_CONFIG = {
-  // Healthcare Demo Website
+  // Sauce Labs Demo Website - E-Commerce Platform
   healthcareApp: {
-    baseUrl: 'https://katalon-demo-cura.herokuapp.com',
+    baseUrl: 'https://www.saucedemo.com',
     homepage: '/',
-    loginPath: '/profile.php?mode=login',
-    appointmentPath: '/profile.php',
+    loginPath: '/',
+    dashboardPath: '/inventory.html',
+    patientsPath: '/inventory.html',
   },
 
   // JSON Placeholder API (for API testing)
@@ -35,13 +36,13 @@ const APP_CONFIG = {
 
 const TEST_CREDENTIALS = {
   validUser: {
-    username: 'John Doe',
-    password: 'ThisIsNotAPassword',
+    username: 'standard_user',
+    password: 'secret_sauce',
   },
 
   invalidUser: {
-    username: 'InvalidUser',
-    password: 'WrongPassword',
+    username: 'locked_out_user',
+    password: 'secret_sauce',
   },
 
   emptyCredentials: {
@@ -51,45 +52,42 @@ const TEST_CREDENTIALS = {
 };
 
 // ============================================
-// APPOINTMENT TEST DATA
+// PATIENT ENCOUNTER TEST DATA (OpenEMR)
 // ============================================
 
 const APPOINTMENT_DATA = {
-  defaultAppointment: {
-    facility: 'Seoul CURA Healthcare Center',
-    readmission: true,
-    program: 'Medicare',
-    visitDate: '01/01/2025',
-    comment: 'Please schedule at your earliest convenience.',
+  defaultEncounter: {
+    patientName: 'John Smith',
+    dobMonth: '01',
+    dobDay: '15',
+    dobYear: '1980',
+    gender: 'Male',
+    visitDate: '01/08/2025',
+    visitReason: 'Routine checkup',
+    department: 'General Practice',
   },
 
-  alternateAppointment: {
-    facility: 'Tokyo CURA Healthcare Center',
-    readmission: false,
-    program: 'UnitedHealthcare',
-    visitDate: '02/15/2025',
-    comment: 'Tokyo appointment request',
+  alternateEncounter: {
+    patientName: 'Jane Doe',
+    dobMonth: '05',
+    dobDay: '20',
+    dobYear: '1985',
+    gender: 'Female',
+    visitDate: '01/09/2025',
+    visitReason: 'Follow-up appointment',
+    department: 'Cardiology',
   },
 
-  londonAppointment: {
-    facility: 'London CURA Healthcare Center',
-    readmission: true,
-    program: 'Medicaid',
-    visitDate: '03/20/2025',
-    comment: 'London facility appointment',
+  emergencyEncounter: {
+    patientName: 'Robert Johnson',
+    dobMonth: '12',
+    dobDay: '10',
+    dobYear: '1975',
+    gender: 'Male',
+    visitDate: '01/08/2025',
+    visitReason: 'Emergency visit',
+    department: 'Emergency Medicine',
   },
-
-  facilities: [
-    'Seoul CURA Healthcare Center',
-    'Tokyo CURA Healthcare Center',
-    'London CURA Healthcare Center',
-  ],
-
-  programs: [
-    'Medicare',
-    'UnitedHealthcare',
-    'Medicaid',
-  ],
 };
 
 // ============================================
@@ -156,52 +154,67 @@ const TIMEOUTS = {
 };
 
 // ============================================
-// SELECTORS (Healthcare App)
+// SELECTORS (OpenEMR)
 // ============================================
 
 const SELECTORS = {
-  // Navigation
-  navigation: {
-    homeLink: 'a[href="./index.php"]',
-    makeAppointmentLink: 'a:has-text("Make Appointment")',
-    loginLink: 'a[href="./profile.php?mode=login"]',
-    logoutLink: 'a:has-text("Logout")',
-  },
-
   // Login Form
   login: {
-    form: 'form#login-form',
-    usernameInput: 'input#txt-username',
-    passwordInput: 'input#txt-password',
-    loginButton: 'button#btn-login',
-    errorMessage: 'div.alert-danger',
+    usernameInput: 'input[name="authUser"]',
+    passwordInput: 'input[name="clearPass"]',
+    languageSelect: 'select[name*="language"]',
+    loginButton: 'button',
+    errorMessage: 'div.alert',
   },
 
-  // Appointment Form
-  appointment: {
-    form: 'form#appointment-form',
-    facilityDropdown: 'select#combo_facility',
-    readmissionCheckbox: 'input#chk_hospotal_readmission',
-    programRadioButtons: 'input[name="radio_program"]',
-    visitDateInput: 'input#txt_visit_date',
-    commentTextarea: 'textarea#txt_comment',
-    bookButton: 'button#btn-book-appointment',
+  // Navigation
+  navigation: {
+    logoutLink: 'a:has-text("Logout")',
+    menuButton: 'button',
+    homeLink: 'a',
+    patientLink: 'a:has-text("Patients")',
+    reportLink: 'a',
   },
 
-  // Confirmation Page
-  confirmation: {
-    header: 'h2:has-text("Appointment Confirmation")',
-    details: 'div.col-xs-12',
-    facilityDisplay: 'text=Facility',
-    dateDisplay: 'text=Visit Date',
-    commentDisplay: 'text=Comment',
+  // Dashboard
+  dashboard: {
+    header: 'h1',
+    mainContent: 'body',
+    patientButton: 'button',
+    encounterButton: 'button',
+  },
+
+  // Patient List
+  patientList: {
+    searchInput: 'input[type="text"]',
+    patientTable: 'table',
+    firstPatientRow: 'tr',
+    newPatientButton: 'button',
+  },
+
+  // Patient Form
+  patientForm: {
+    firstNameInput: 'input[name*="fname"]',
+    lastNameInput: 'input[name*="lname"]',
+    dobInput: 'input[type="date"]',
+    genderSelect: 'select',
+    saveButton: 'button',
+  },
+
+  // Encounter Form
+  encounterForm: {
+    visitDateInput: 'input[type="date"]',
+    visitReasonInput: 'textarea',
+    departmentSelect: 'select',
+    startEncounterButton: 'button',
+    addNoteButton: 'button',
   },
 
   // Page Headers
   headers: {
-    appointmentHeader: 'h1:has-text("Make Appointment")',
-    confirmationHeader: 'h2:has-text("Appointment Confirmation")',
-    homeHeader: 'h1',
+    mainHeader: 'h1',
+    pageTitle: 'h1',
+    successMessage: 'div.alert',
   },
 };
 

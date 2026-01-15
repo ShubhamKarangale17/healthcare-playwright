@@ -41,7 +41,7 @@ test.describe('Patient API Tests - @api @patient', () => {
 
   test('GET all patients - verify response structure and status', async ({ request }) => {
     /**
-     * Test Case 1: Retrieve all patients (users) from the API
+     * Test Case 1: Retrieve all Patients (users) from the API
      * 
      * Expected:
      * - Status code: 200
