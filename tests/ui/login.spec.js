@@ -10,7 +10,7 @@ test.describe('Login Tests - @ui @login', () => {
   
   test('Test 1: Verify website loads successfully', async ({ page }) => {
     /**
-     * Test Case 1: Website should load without errors
+     * Test Case 1: Website Should Load Without Errors
      */
     await page.goto(config.APP_CONFIG.healthcareApp.baseUrl);
     await page.waitForTimeout(2000);

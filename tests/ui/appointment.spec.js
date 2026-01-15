@@ -159,8 +159,7 @@ test.describe('Patient Encounter Tests - @ui @encounter', () => {
       const pageUrl = page.url();
       console.log('✓ Logout option available (URL: ' + pageUrl + ')');
     }
-  });
-});
+
     await loginLink.click();
     await page.waitForTimeout(2000);
 
@@ -194,7 +193,7 @@ test.describe('Patient Encounter Tests - @ui @encounter', () => {
      * Test Case 1: User should successfully book an appointment
      */
 
-    // Select facility
+    // Select Facility
     const facilityDropdown = await page.locator(selectors.facilityDropdown);
     await facilityDropdown.selectOption('Seoul CURA Healthcare Center');
     await page.waitForTimeout(500);
@@ -214,7 +213,7 @@ test.describe('Patient Encounter Tests - @ui @encounter', () => {
     await dateInput.fill(APPOINTMENT_DATA.visitDate);
     await page.waitForTimeout(500);
 
-    // Enter comment
+    // Enter Comment
     const commentField = await page.locator(selectors.commentTextarea);
     await commentField.fill(APPOINTMENT_DATA.comment);
     await page.waitForTimeout(500);
@@ -224,7 +223,7 @@ test.describe('Patient Encounter Tests - @ui @encounter', () => {
     await bookButton.click();
     await page.waitForTimeout(3000);
 
-    // Verify confirmation
+    // Verify Confirmation
     const confirmationHeader = await page.locator(selectors.confirmationHeader);
     await expect(confirmationHeader).toBeVisible({ timeout: 10000 });
 

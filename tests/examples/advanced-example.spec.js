@@ -33,7 +33,7 @@ const {
  * EXAMPLE 1: Using Helpers with Config
  * 
  * This demonstrates how to use reusable functions
- * across multiple test files, reducing code duplication
+ * Across multiple test files, reducing code duplication
  * 
  * NOTE: These are example tests showing patterns - they are skipped by default
  * Uncomment test.only() to run individual examples
